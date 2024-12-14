@@ -1,5 +1,5 @@
-<h1 align="center">Dotfiles config</h1>
-<h3 align="center">My entire config and a step by step setup for when I change my workspace or reinstall. Made with WSL2 Ubuntu and Mac in mind.</h2>
+<h1 align="center">Dotfiles</h1>
+<h2 align="center">My entire config and a step by step setup for when I change my workspace or reinstall. Made with WSL and macOS in mind.</h2>
 
 ### Step 1
 #### Configure BASH and terminal environment
@@ -27,7 +27,7 @@ apt update; apt install git
 git -version # should print '2.47.1'
 ```
 
-If you're on MacOS, install using homebrew:
+If you're on macOS, install using homebrew:
 ```
 brew install git
 git -version # should print '2.47.1'
@@ -38,6 +38,7 @@ Configure git globals (optional):
 git config --global user.name "username"
 git config --global user.email "12345678+username@users.noreply.github.com"
 git config --global init.defaultBranch main
+git config --global core.autocrlf input
 ```
 
 Setup github ssh connection (optional):
@@ -72,7 +73,7 @@ sudo apt install zsh -y
 zsh --version # should print '5.9'
 ```
 
-If you're on MacOS, install using homebrew (included since Catalina):
+If you're on macOS, install using homebrew (included since Catalina):
 ```
 brew install zsh
 zsh --version # should print '5.9'
@@ -123,7 +124,7 @@ sudo apt install python3-pip -y
 pip3 --version
 ```
 
-If you're on MacOS, install using homebrew (might be preinstalled):
+If you're on macOS, install using homebrew (might be preinstalled):
 ```
 brew install python
 python3 --version
@@ -161,12 +162,12 @@ Install Oh My Posh:
 curl -s https://ohmyposh.dev/install.sh | bash -s
 ```
 
-If you're on MacOS, install using homebrew:
+If you're on macOS, install using homebrew:
 ```
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
 ```
 
-Also add the following line to be avoid loading Oh My Posh in the default terminal on MacOS (unsupported):
+Also add the following line to be avoid loading Oh My Posh in the default terminal on macOS (unsupported):
 ```
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   eval "$(oh-my-posh init zsh)"
@@ -200,7 +201,7 @@ cargo install eza
 eza --version # should print 'v0.20.12'
 ```
 
-If you're on MacOS, install using homebrew:
+If you're on macOS, install using homebrew:
 ```
 brew install eza
 eza --version # should print 'v0.20.12'
@@ -221,7 +222,7 @@ brew install fzf
 curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 ```
 
-If you're on MacOS, install using homebrew:
+If you're on macOS, install using homebrew:
 ```
 brew install zoxide
 ```
