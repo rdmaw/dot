@@ -1,0 +1,96 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#9ccfd8",
+          "style": "plain",
+          "template": "<white>\uf2dc</>  {{ .UserName }}",
+          "type": "text"
+        },
+        {
+          "foreground": "#ffffff",
+          "style": "plain",
+          "template": " on ",
+          "type": "git"
+        },
+        {
+          "foreground": "#9cd8c3",
+          "foreground_templates": [
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#eb6f92{{ end }}",
+            "{{ if gt .Ahead 0 }}#c39cd8{{ end }}",
+            "{{ if gt .Behind 0 }}#c39cd8{{ end }}"
+          ],
+          "powerline_symbol": "\ue0b0",
+          "properties": {
+            "branch_max_length": 25,
+            "branch_icon": " ",
+            "fetch_stash_count": true,
+            "fetch_status": true,
+            "fetch_upstream_icon": true
+          },
+          "style": "plain",
+          "template": "\uea84 {{ .HEAD }}{{ if .Working.Changed }}<#d8c39c> \udb84\udde7 {{ .Working.String }}{{ end }}</> {{ if and (.Working.Changed) (.Staging.Changed) }}{{ end }}{{ if .Staging.Changed }}<#b7c39c>\udb81\udf52 {{ .Staging.String }} {{ end }}</>{{ if gt .StashCount 0 }}<#d09186>\udb80\udd93 {{ .StashCount }}{{ end }}</> ",
+          "type": "git"
+        }
+      ],
+      "type": "prompt"
+    },
+
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#9cb1d8",
+          "properties": {
+            "folder_separator_icon": "/",
+            "style": "full"
+          },
+          "style": "plain",
+          "template": "\uf07b  {{ .Path }}",
+          "type": "path"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#9ccfd8",
+          "style": "plain",
+          "template": "\ue3bf ",
+          "type": "root"
+        },
+        {
+          "foreground": "#9cb1d8",
+          "style": "plain",
+          "template": "\udb82\udda8 ",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "transient_prompt": {
+    "background": "transparent",
+    "foreground": "#9cb1d8",
+    "foreground_templates": [
+      "{{ if gt .Code 0 }}#eb6f92{{ end }}",
+      "{{ if eq .Code 0 }}#9cb1d8{{ end }}"
+    ],
+    "template": "\uf292  "
+  },
+  "secondary_prompt": {
+    "background": "transparent",
+    "foreground": "#9cb1d8",
+    "template": "\uf101  "
+  },
+  "final_space": true,
+  "version": 3
+}
