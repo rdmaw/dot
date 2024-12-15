@@ -1,6 +1,8 @@
-<h1 align="center">Dotfiles</h1>
-<h3 align="center">My config and a step by step setup for when I change my workspace. Made with WSL and macOS in mind.</h3>
-<br/>
+<h1 align="center">My config</h1>
+<h3 align="center">A step by step setup for when I change my workspace.</h3>
+<h4 align="center">This guide is intended for my personal use, but you can fork it to create something similar for yourself.
+<br />
+Made with WSL and macOS in mind.</h4>
 
 ## Step 1
 
@@ -20,7 +22,7 @@ Additionally, pull or copy the contents from .wezterm.lua if using wezterm (opti
 
 ```shell
 cd ~ && touch .wezterm.lua
-vim .wezterm.lua
+vi .wezterm.lua
 ```
 
 Set up Remote - WSL and follow the instructions to install (only needed for WSL environments, and if using VSCode):
@@ -47,7 +49,7 @@ brew install git
 git -version # should print '2.47.1'
 ```
 
-Configure git globals (optional):
+Configure globals (optional):
 
 ```shell
 git config --global user.name "username"
@@ -56,7 +58,7 @@ git config --global init.defaultBranch main
 git config --global core.autocrlf input
 ```
 
-Setup github ssh connection (optional):
+Set up ssh connection (optional):
 
 ```shell
 ssh-keygen -t ed25519 -C "12345678+username@users.noreply.github.com"
@@ -65,10 +67,10 @@ ssh-add ~/.ssh/id_ed25519
 cat ~/.ssh/id_ed25519.pub
 ```
 
-Highlight and copy the entire cat output (skip, if not following above):
+Highlight and copy the output (skip, if not following above):
 
 1. Log in to [github.com](https://github.com/)
-2. Go to Settings -> SSH and GPG keys under 'Access'
+2. Go to Settings -> SSH and GPG keys under the 'Access' section
 3. Create New SSH key and add a custom title (e.g. your terminal name)
 4. Paste the copied output into the 'Key' field
 5. Add SSH key
@@ -79,11 +81,11 @@ Test the SSH connection, and answer yes to connect (skip, if not following above
 ssh -T git@github.com # if successful, should print 'Hi username! You've successfully authenticated, but GitHub does not provide shell access.'
 ```
 
-Automating the SSH key on startup with an agent will be done the end of Step 3.
+Automating the SSH key on startup with an agent will be done at the end of Step 3.
 
 ## Step 3
 
-### Setup and configure ZSH
+### Set up and configure ZSH
 
 Install ZSH using apt:
 
@@ -113,7 +115,7 @@ Create empty .zshrc file inside the home directory:
 touch ~/.zshrc
 ```
 
-### Setup Zinit
+### Set up Zinit
 
 Install zinit using curl:
 
@@ -127,7 +129,7 @@ Reload your terminal and compile zinit:
 zinit self-update
 ```
 
-Reload again and check if it is installed by running:
+Reload again and check if zinit is installed by running:
 
 ```shell
 zinit zstatus
@@ -142,7 +144,7 @@ python3 --version
 which python3
 ```
 
-Setup if not installed:
+Set up if not installed:
 
 ```shell
 sudo apt update
@@ -154,6 +156,13 @@ Install pip (optional):
 ```shell
 sudo apt install python3-pip -y
 pip3 --version
+```
+
+Install python3-venv (optional, but required later for some formatters):
+
+```shell
+sudo apt update
+sudo apt install -y python3-venv
 ```
 
 If you're on macOS, install using homebrew (might be preinstalled):
@@ -173,7 +182,7 @@ cd pokemon-colorscripts
 sudo ./install.sh
 ```
 
-### LTS node and node version manager
+### Node and node version manager
 
 Install node version manager using curl:
 
@@ -189,7 +198,7 @@ node -v # should print `v23.4.0`
 npm -v # should print `10.9.2`
 ```
 
-Check .bashrc or .zshrc if the node paths were created. If not add them manually under '# PATH' in your '.zshrc' file:
+Open and check your '.bashrc' or '.zshrc' file, to see if the paths from nvm were created. If not add them manually under '# PATH' in your '.zshrc' file:
 
 ```shell
 export NVM_DIR="$HOME/.nvm"
@@ -225,12 +234,12 @@ Create a config file for your custom prompt and paste the contents from redmaw.j
 ```shell
 mkdir -p ~/.config/ohmyposh && cd ~/.config/ohmyposh
 oh-my-posh config export --format json --output ~/.config/ohmyposh/redmaw.json
-vim redmaw.json
+vi redmaw.json
 ```
 
 ### Installing eza, tokei, fzf, fastfetch and zoxide
 
-Check if you have any of them installed first to avoid duplicates using a which loop:
+Check if you have any of them installed first to avoid duplicates using which:
 
 ```shell
 for cmd in eza tokei fzf fastfetch zoxide; do which $cmd; done
@@ -258,7 +267,7 @@ zoxide --version # should print '0.9.6'
 Open your .zshrc file and match the contents to the repository file:
 
 ```shell
-vim ~/.zshrc
+vi ~/.zshrc
 ```
 
 If you're on linux or WSL, add the following line under "# PATH":
@@ -290,22 +299,21 @@ sudo apt update
 sudo apt install ninja-build gettext cmake unzip curl build-essential
 ```
 
-Secondly, install fd-find and ripgrep, as they're both need for telescope:
+Secondly, install fd-find and ripgrep, as they're both needed for telescope:
 
 ```shell
 brew update
-brew install fd
-brew install ripgrep
+brew install fd ripgrep
 ```
 
 If you're on macOS, install them using homebrew:
 
 ```shell
 brew update
-brew install curl cmake make unzip ninja gettext
+brew install curl cmake make unzip ninja gettext fd ripgrep
 ```
 
-Finally, install python3-venv, which is required for Mason to install python related servers and formatters:
+If you didn't do it earlier, install python3-venv, which is required for Mason to install python related formatters:
 
 ```shell
 sudo apt update
@@ -342,7 +350,7 @@ cd ~/.config
 git clone git@github.com:username/nvim.git
 ```
 
-Run checkhealth for your plugin manager and then with all of your plugins individually to check if everything works and you aren't missing any required packages (e.g. unzip, ripgrep, python3-venv, etc):
+Run checkhealth for your plugin manager and then repeat the process with all of your plugins individually to check if everything works and you aren't missing any required packages (e.g. unzip, ripgrep, python3-venv, etc):
 
 ```vim
 cd ~/.config/nvim && nvim

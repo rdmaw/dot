@@ -2,13 +2,19 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 local mux = wezterm.mux
 
--- Toggle fullscreen on start
 wezterm.on("gui-startup", function(cmd)
     local tab, pane, window = mux.spawn_window(cmd or {})
     window:gui_window():toggle_fullscreen()
 end)
 
--- Bind 'Ctrl + v' to paste from system clipboard
+config.wsl_domains = {
+    {
+      name = 'WSL:Ubuntu',
+      distribution = 'Ubuntu',
+    },
+}
+config.default_prog = { "ubuntu.exe" }
+
 config.keys = {
     {
         key = "v",
@@ -17,26 +23,26 @@ config.keys = {
     },
 }
 
--- Make wezterm use ubuntu.exe installed from Windows Wsl. See wsl -l -o.
-config.default_prog = { "ubuntu.exe" }
+config.enable_tab_bar = false
 
--- Fix some font rendering issues with wezterm
-config.freetype_load_flags = 'NO_HINTING'
-config.freetype_load_target = "Light"
-config.freetype_render_target = "HorizontalLcd"
+config.window_padding = {
+    left = 0,
+    right = 0,
+    top = 0,
+    bottom = 0,
+}
+
+config.color_scheme = "rose-pine-moon"
 
 -- Font
 config.font = wezterm.font("IosevkaTerm Nerd Font", { weight = "Regular"})
 config.font_size = 18
 config.line_height = 0.8
+config.freetype_load_flags = 'NO_HINTING'
+config.freetype_load_target = "Light"
+config.freetype_render_target = "HorizontalLcd"
 
--- Like, who uses tabs when you got buffers and tmux
-config.enable_tab_bar = false
-
--- Best colorscheme
-config.color_scheme = "rose-pine-moon"
-
--- Cursor and selection
+-- Cursor
 config.default_cursor_style = "SteadyBlock"
 config.colors = {
     cursor_fg = "#232136",
@@ -46,19 +52,11 @@ config.colors = {
     selection_bg = "rgba(68, 65, 90, 0.75)",
 }
 
--- Background image (change the url to your own path)
-config.window_background_image = "pathtofolder/image.jpg"
+-- Background
+config.window_background_image = "c:/users/user/pathtofolder/image.jpg"
 config.window_background_image_hsb = {
     brightness = 0.14,
 }
 config.window_background_opacity = 1
-
--- Remove ugly terminal padding
-config.window_padding = {
-    left = 0,
-    right = 0,
-    top = 0,
-    bottom = 0,
-}
 
 return config
