@@ -4,6 +4,18 @@
 <br />
 Made with WSL and macOS in mind.</h4>
 
+[1 - Bash, Terminal and WSL](#step-1)
+
+[2 - Package Manager, Git and SSH](#step-2)
+
+[3 - ZSH, Node and scripts](#step-3)
+
+[4 - Neovim](#step-4)
+
+[5 - Lazygit](#step-5)
+
+[6 - Tmux](#step-6)
+
 ## Step 1
 
 ### BASH, WSL and terminal environment
@@ -84,6 +96,14 @@ ssh -T git@github.com # if successful, should print 'Hi username! You've success
 Automating the SSH key on startup with an agent will be done at the end of Step 3.
 
 ## Step 3
+
+[ZSH](#set-up-and-configure-zsh) |
+[Zinit](#set-up-zinit) |
+[pokemon-colorscripts](#installing-pokemon-colorscripts) |
+[Node](#node-and-node-version-manager) |
+[Oh My Posh](#installing-oh-my-posh-with-a-custom-theme) |
+[eza, tokei, fzf, fastfetch and zoxide](#installing-eza-tokei-fzf-fastfetch-and-zoxide) |
+[zshrc](#finishing-off-the-zsh-section)
 
 ### Set up and configure ZSH
 
@@ -289,6 +309,9 @@ eval "$(oh-my-posh init zsh --config '~/.config/ohmyposh/redmaw.json')"
 ```
 
 ## Step 4
+
+[Required packages](#setting-up-neovim) |
+[Neovim](#installing-neovim)
 
 ### Setting up neovim
 
