@@ -1,13 +1,14 @@
-<h2 align="center">Dotfiles</h2>
-<h4 align="center">My entire config and a step by step setup for when I change my workspace or reinstall. Made with WSL and macOS in mind.</h4>
+<h1 align="center">Dotfiles</h1>
+<h3 align="center">My config and a step by step setup for when I change my workspace. Made with WSL and macOS in mind.</h3>
+<br/>
 
-### Step 1
+## Step 1
 
-#### BASH, WSL and terminal environment
+### BASH, WSL and terminal environment
 
-Start by installing WSL using powershell:
+Start by installing WSL using cmd or powershell:
 
-```powershell
+```bat
 wsl --install -d Ubuntu
 ```
 
@@ -28,9 +29,9 @@ Set up Remote - WSL and follow the instructions to install (only needed for WSL 
 code .
 ```
 
-### Step 2
+## Step 2
 
-#### Package Managers and Git version control
+### Package Managers and Git version control
 
 Install homebrew and follow the instructions:
 
@@ -80,9 +81,9 @@ ssh -T git@github.com # if successful, should print 'Hi username! You've success
 
 Automating the SSH key on startup with an agent will be done the end of Step 3.
 
-### Step 3
+## Step 3
 
-#### Setup and configure ZSH
+### Setup and configure ZSH
 
 Install ZSH using apt:
 
@@ -112,7 +113,7 @@ Create empty .zshrc file inside the home directory:
 touch ~/.zshrc
 ```
 
-#### Setup Zinit
+### Setup Zinit
 
 Install zinit using curl:
 
@@ -132,7 +133,7 @@ Reload again and check if it is installed by running:
 zinit zstatus
 ```
 
-#### Installing pokemon-colorscripts
+### Installing pokemon-colorscripts
 
 Check if python3 is installed (required):
 
@@ -172,7 +173,7 @@ cd pokemon-colorscripts
 sudo ./install.sh
 ```
 
-#### LTS node and node version manager
+### LTS node and node version manager
 
 Install node version manager using curl:
 
@@ -196,7 +197,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 ```
 
-#### Installing Oh My Posh with a custom theme
+### Installing Oh My Posh with a custom theme
 
 Install Oh My Posh using curl:
 
@@ -227,7 +228,7 @@ oh-my-posh config export --format json --output ~/.config/ohmyposh/redmaw.json
 vim redmaw.json
 ```
 
-#### Installing eza, tokei, fzf, fastfetch and zoxide
+### Installing eza, tokei, fzf, fastfetch and zoxide
 
 Check if you have any of them installed first to avoid duplicates using a which loop:
 
@@ -252,7 +253,7 @@ fastfetch --version # should print '2.31.0'
 zoxide --version # should print '0.9.6'
 ```
 
-#### Finishing off the ZSH section
+### Finishing off the ZSH section
 
 Open your .zshrc file and match the contents to the repository file:
 
@@ -278,9 +279,9 @@ If you didn't already, configure Oh My Posh to use your custom json file:
 eval "$(oh-my-posh init zsh --config '~/.config/ohmyposh/redmaw.json')"
 ```
 
-### Step 4
+## Step 4
 
-#### Setting up neovim
+### Setting up neovim
 
 Start off by installing some commonly used packages:
 
@@ -324,7 +325,7 @@ brew update
 brew install python
 ```
 
-#### Installing neovim
+### Installing neovim
 
 Install neovim using homebrew:
 
@@ -343,7 +344,7 @@ git clone git@github.com:username/nvim.git
 
 Run checkhealth for your plugin manager and then with all of your plugins individually to check if everything works and you aren't missing any required packages (e.g. unzip, ripgrep, python3-venv, etc):
 
-```shell
+```vim
 cd ~/.config/nvim && nvim
 :checkhealth lazy
 :checkhealth telescope
@@ -352,9 +353,9 @@ cd ~/.config/nvim && nvim
 
 Don't forget to check that all of your options and keybindings work as expected!
 
-### Step 5
+## Step 5
 
-#### Lazygit
+### Lazygit
 
 Install lazygit using homebrew:
 
@@ -364,9 +365,9 @@ brew install lazygit
 lazygit --version # should print '0.44.1'
 ```
 
-### Step 6
+## Step 6
 
-#### Setting up tmux multiplexer
+### Setting up tmux multiplexer
 
 Install tmux using homebrew:
 
