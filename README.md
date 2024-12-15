@@ -1,5 +1,5 @@
-<h1 align="center">Dotfiles</h1>
-<h2 align="center">My entire config and a step by step setup for when I change my workspace or reinstall. Made with WSL and macOS in mind.</h2>
+<h2 align="center">Dotfiles</h2>
+<h4 align="center">My entire config and a step by step setup for when I change my workspace or reinstall. Made with WSL and macOS in mind.</h4>
 
 ### Step 1
 
