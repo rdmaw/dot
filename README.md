@@ -1,5 +1,5 @@
 <h1 align="center">My config</h1>
-<h3 align="center">A step by step setup for when I change my workspace.</h3>
+<h3 align="center">A step by step guide for when I change my workspace.</h3>
 <h4 align="center">This guide is intended for my personal use, but you can fork it to create something similar for yourself.
 <br />
 Made with WSL and macOS in mind.</h4>
@@ -32,14 +32,14 @@ Pull or copy the .bashrc file contents from this repository to update your own.
 
 Additionally, pull or copy the contents from .wezterm.lua if using wezterm (optional):
 
-```shell
+```bash
 cd ~ && touch .wezterm.lua
 vi .wezterm.lua
 ```
 
-Set up Remote - WSL and follow the instructions to install (only needed for WSL environments, and if using VSCode):
+Set up Remote - WSL (only needed for WSL environments, and if using VSCode):
 
-```shell
+```bash
 code .
 ```
 
@@ -49,21 +49,49 @@ code .
 
 Install homebrew and follow the instructions:
 
-```shell
+```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Remove aggregate formulae and cask analytics by adding the following line to your .bashrc:
+
+```bash
+export HOMEBREW_NO_ANALYTICS=1
+```
+
+Add homebrew to your Path, replacing user with your UNIX username:
+
+```bash
+echo >> /home/user/.bashrc
+echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/user/.bashrc
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+```
+
+Install homebrew's dependencies using apt-get:
+
+```bash
+sudo apt update
+sudo apt-get install build-essential
+```
+
+Also install GCC as recommended by homebrew:
+
+```bash
+brew update
+brew install gcc
 ```
 
 Install git using homebrew:
 
-```shell
+```bash
 brew update
 brew install git
-git -version # should print '2.47.1'
+git -v # should print 'git version 2.47.1'
 ```
 
 Configure globals (optional):
 
-```shell
+```bash
 git config --global user.name "username"
 git config --global user.email "12345678+username@users.noreply.github.com"
 git config --global init.defaultBranch main
@@ -72,7 +100,7 @@ git config --global core.autocrlf input
 
 Set up ssh connection (optional):
 
-```shell
+```bash
 ssh-keygen -t ed25519 -C "12345678+username@users.noreply.github.com"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
@@ -89,7 +117,7 @@ Highlight and copy the output (skip, if not following above):
 
 Test the SSH connection, and answer yes to connect (skip, if not following above):
 
-```shell
+```bash
 ssh -T git@github.com # if successful, should print 'Hi username! You've successfully authenticated, but GitHub does not provide shell access.'
 ```
 
@@ -109,49 +137,49 @@ Automating the SSH key on startup with an agent will be done at the end of Step 
 
 Install ZSH using apt:
 
-```shell
+```bash
 sudo apt update
 sudo apt install zsh -y
-zsh --version # should print '5.9'
+zsh --version # should print 'zsh 5.9'
 ```
 
 If you're on macOS, install using homebrew (included since Catalina):
 
-```shell
+```bash
 brew update
 brew install zsh
 zsh --version # should print '5.9'
 ```
 
-Set ZSH as the default shell:
+Create an empty .zshrc file inside your home directory:
 
-```shell
-chsh -s $(which zsh)
+```zsh
+touch ~/.zshrc
 ```
 
-Create empty .zshrc file inside the home directory:
+Set ZSH to be the default shell and reload your terminal:
 
-```shell
-touch ~/.zshrc
+```bash
+chsh -s $(which zsh)
 ```
 
 ### Set up Zinit
 
 Install zinit using curl:
 
-```shell
+```zsh
 bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
 ```
 
 Reload your terminal and compile zinit:
 
-```shell
+```zsh
 zinit self-update
 ```
 
 Reload again and check if zinit is installed by running:
 
-```shell
+```zsh
 zinit zstatus
 ```
 
@@ -159,35 +187,35 @@ zinit zstatus
 
 Check if python3 is installed (required):
 
-```shell
-python3 --version
+```zsh
+python3 --version # should print 'Python 3.12.3'
 which python3
 ```
 
 Set up if not installed:
 
-```shell
+```zsh
 sudo apt update
 sudo apt install python3 -y
 ```
 
 Install pip (optional):
 
-```shell
+```zsh
 sudo apt install python3-pip -y
-pip3 --version
+pip3 --version # should print 'pip 24.0'
 ```
 
 Install python3-venv (optional, but required later for some formatters):
 
-```shell
+```zsh
 sudo apt update
 sudo apt install -y python3-venv
 ```
 
 If you're on macOS, install using homebrew (might be preinstalled):
 
-```shell
+```zsh
 brew update
 brew install python
 python3 --version
@@ -196,23 +224,30 @@ pip3 --version
 
 Lastly, install pokemon-colorscrips:
 
-```shell
+```zsh
 git clone https://gitlab.com/phoneybadger/pokemon-colorscripts.git
 cd pokemon-colorscripts
 sudo ./install.sh
 ```
 
+You can test to see if it works by printing any pokemon you like:
+
+```zsh
+pokemon-colorscripts -n flareon --no-title
+```
+
 ### Node and node version manager
 
-Install node version manager using curl:
+Install node version manager using curl and source your '.zshrc' file:
 
-```shell
+```zsh
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+source ~/.zshrc
 ```
 
 Then install node using the version manager:
 
-```shell
+```zsh
 nvm install 23
 node -v # should print `v23.4.0`
 npm -v # should print `10.9.2`
@@ -220,7 +255,7 @@ npm -v # should print `10.9.2`
 
 Open and check your '.bashrc' or '.zshrc' file, to see if the paths from nvm were created. If not add them manually under '# PATH' in your '.zshrc' file:
 
-```shell
+```zsh
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -228,84 +263,100 @@ export NVM_DIR="$HOME/.nvm"
 
 ### Installing Oh My Posh with a custom theme
 
-Install Oh My Posh using curl:
+Firstly, install unzip (required):
 
-```shell
+```zsh
+sudo apt update
+sudo apt install unzip
+```
+
+Secondly, install Oh My Posh to your system using curl:
+
+```zsh
 curl -s https://ohmyposh.dev/install.sh | bash -s
 ```
 
 If you're on macOS, install using homebrew:
 
-```shell
+```zsh
 brew update
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
 ```
 
 Also add the following line to avoid loading Oh My Posh in the default macOS terminal, which is unsupported:
 
-```shell
+```zsh
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   eval "$(oh-my-posh init zsh)"
 fi
 ```
 
+After installing on any of the systems, add the installation directory to your Path in your '.zshrc' file:
+
+```zsh
+export PATH=$PATH:/home/redmaw/.local/bin
+```
+
 Create a config file for your custom prompt and paste the contents from redmaw.json into this file:
 
-```shell
+```zsh
 mkdir -p ~/.config/ohmyposh && cd ~/.config/ohmyposh
 oh-my-posh config export --format json --output ~/.config/ohmyposh/redmaw.json
-vi redmaw.json
+cd ohmyposh && vi redmaw.json
 ```
+
+Configure Oh My Posh to use your custom json file by adding the following line to your ',zshrc' file, and then sourcing it:
+
+```zsh
+eval "$(oh-my-posh init zsh --config '~/.config/ohmyposh/redmaw.json')"
+source ~/.zshrc
+```
+
+Your prompt should have changed to the default prompt theme. To update it match the contents of redmaw.json to the same file included in this repository.
 
 ### Installing eza, tokei, fzf, fastfetch and zoxide
 
 Check if you have any of them installed first to avoid duplicates using which:
 
-```shell
+```zsh
 for cmd in eza tokei fzf fastfetch zoxide; do which $cmd; done
 ```
 
 Install using homebrew:
 
-```shell
+```zsh
 brew update
 brew install eza tokei fzf fastfetch zoxide
 ```
 
 Check if the packages are up to date:
 
-```shell
-eza --version # should print '0.20.12'
+```zsh
+eza --version # should print 'v0.20.12'
 tokei --version # should print '12.1.2'
-fzf --version # should print '0.56.3'
+fzf --version # should print '0.57.0'
 fastfetch --version # should print '2.31.0'
 zoxide --version # should print '0.9.6'
 ```
 
 ### Finishing off the ZSH section
 
-Open your .zshrc file and match the contents to the repository file:
+If you're on linux or WSL, add the following line under "# PATH" in your '.zshrc' file:
 
-```shell
-vi ~/.zshrc
-```
-
-If you're on linux or WSL, add the following line under "# PATH":
-
-```shell
+```zsh
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 ```
 
 If you're on macOS, add this line instead:
 
-```shell
+```zsh
 eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
-If you didn't already, configure Oh My Posh to use your custom json file:
+Open your .zshrc file and match the contents to the repository file:
 
-```shell
-eval "$(oh-my-posh init zsh --config '~/.config/ohmyposh/redmaw.json')"
+```zsh
+vi ~/.zshrc
 ```
 
 ## Step 4
@@ -317,41 +368,41 @@ eval "$(oh-my-posh init zsh --config '~/.config/ohmyposh/redmaw.json')"
 
 Start off by installing some commonly used packages:
 
-```shell
+```zsh
 sudo apt update
-sudo apt install ninja-build gettext cmake unzip curl build-essential
+sudo apt install ninja-build gettext cmake curl
 ```
 
 Secondly, install fd-find and ripgrep, as they're both needed for telescope:
 
-```shell
+```zsh
 brew update
 brew install fd ripgrep
 ```
 
 If you're on macOS, install them using homebrew:
 
-```shell
+```zsh
 brew update
 brew install curl cmake make unzip ninja gettext fd ripgrep
 ```
 
 If you didn't do it earlier, install python3-venv, which is required for Mason to install python related formatters:
 
-```shell
+```zsh
 sudo apt update
 sudo apt install -y python3-venv
 ```
 
 For macOS, venv should already be available:
 
-```shell
+```zsh
 python3 -m venv --help
 ```
 
 If not, install it by using homebrew:
 
-```shell
+```zsh
 brew update
 brew install python
 ```
@@ -360,7 +411,7 @@ brew install python
 
 Install neovim using homebrew:
 
-```shell
+```zsh
 brew update
 brew install neovim
 nvim -v # should print '0.10.2'
@@ -368,15 +419,14 @@ nvim -v # should print '0.10.2'
 
 Initialize your nvim folder by adding your neovim config:
 
-```shell
+```zsh
 cd ~/.config
 git clone git@github.com:username/nvim.git
 ```
 
-Run checkhealth for your plugin manager and then repeat the process with all of your plugins individually to check if everything works and you aren't missing any required packages (e.g. unzip, ripgrep, python3-venv, etc):
+Open neovim and run checkhealth for your plugin manager and then repeat the process with all of your plugins individually to check if everything works and you aren't missing any required packages (e.g. unzip, ripgrep, python3-venv, etc):
 
 ```vim
-cd ~/.config/nvim && nvim
 :checkhealth lazy
 :checkhealth telescope
 :checkhealth otherpluginname
@@ -390,7 +440,7 @@ Don't forget to check that all of your options and keybindings work as expected!
 
 Install lazygit using homebrew:
 
-```shell
+```zsh
 brew update
 brew install lazygit
 lazygit --version # should print '0.44.1'
@@ -402,7 +452,7 @@ lazygit --version # should print '0.44.1'
 
 Install tmux using homebrew:
 
-```shell
+```zsh
 brew update
 brew install tmux
 tmux --version # should print '3.5a'
