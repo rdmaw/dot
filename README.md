@@ -4,17 +4,15 @@
 <br />
 Made with WSL and macOS in mind.</h4>
 
-[1 - Bash, Terminal and WSL](#step-1)
+<div align="center">
 
-[2 - Package Manager, Git and SSH](#step-2)
+[1 - Bash, Terminal and WSL](#step-1) •
+[2 - Package Manager, Git and SSH](#step-2) •
+[3 - ZSH, Node and scripts](#step-3) •
+[4 - Neovim](#step-4) •
+[6 - Tmux](#step-5)
 
-[3 - ZSH, Node and scripts](#step-3)
-
-[4 - Neovim](#step-4)
-
-[5 - Lazygit](#step-5)
-
-[6 - Tmux](#step-6)
+</div>
 
 ## Step 1
 
@@ -33,7 +31,7 @@ Pull or copy the .bashrc file contents from this repository to update your own.
 Additionally, pull or copy the contents from .wezterm.lua if using wezterm (optional):
 
 ```bash
-cd ~ && touch .wezterm.lua
+cd && touch .wezterm.lua
 vi .wezterm.lua
 ```
 
@@ -125,12 +123,12 @@ Automating the SSH key on startup with an agent will be done at the end of Step 
 
 ## Step 3
 
-[ZSH](#set-up-and-configure-zsh) |
-[Zinit](#set-up-zinit) |
-[pokemon-colorscripts](#installing-pokemon-colorscripts) |
-[Node](#node-and-node-version-manager) |
-[Oh My Posh](#installing-oh-my-posh-with-a-custom-theme) |
-[eza, tokei, fzf, fastfetch and zoxide](#installing-eza-tokei-fzf-fastfetch-and-zoxide) |
+[ZSH](#set-up-and-configure-zsh) •
+[Zinit](#set-up-zinit) •
+[pokemon-colorscripts](#installing-pokemon-colorscripts) •
+[Node](#node-and-node-version-manager) •
+[Oh My Posh](#installing-oh-my-posh-with-a-custom-theme) •
+[eza, tokei, fzf, fastfetch and zoxide](#installing-eza-tokei-fzf-fastfetch-and-zoxide) •
 [zshrc](#finishing-off-the-zsh-section)
 
 ### Set up and configure ZSH
@@ -253,14 +251,6 @@ node -v # should print `v23.4.0`
 npm -v # should print `10.9.2`
 ```
 
-Open and check your '.bashrc' or '.zshrc' file, to see if the paths from nvm were created. If not add them manually under '# PATH' in your '.zshrc' file:
-
-```zsh
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-```
-
 ### Installing Oh My Posh with a custom theme
 
 Firstly, install unzip (required):
@@ -295,6 +285,7 @@ After installing on any of the systems, add the installation directory to your P
 
 ```zsh
 export PATH=$PATH:/home/redmaw/.local/bin
+export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 ```
 
 Create a config file for your custom prompt and paste the contents from redmaw.json into this file:
@@ -361,7 +352,7 @@ vi ~/.zshrc
 
 ## Step 4
 
-[Required packages](#setting-up-neovim) |
+[Required packages](#setting-up-neovim) •
 [Neovim](#installing-neovim)
 
 ### Setting up neovim
@@ -407,6 +398,16 @@ brew update
 brew install python
 ```
 
+### Lazygit
+
+Install lazygit using homebrew:
+
+```zsh
+brew update
+brew install lazygit
+lazygit --version # should print 'version=0.44.1'
+```
+
 ### Installing neovim
 
 Install neovim using homebrew:
@@ -414,7 +415,7 @@ Install neovim using homebrew:
 ```zsh
 brew update
 brew install neovim
-nvim -v # should print '0.10.2'
+nvim -v # should print 'NVIM v0.10.2'
 ```
 
 Initialize your nvim folder by adding your neovim config:
@@ -424,36 +425,22 @@ cd ~/.config
 git clone git@github.com:username/nvim.git
 ```
 
-Open neovim and run checkhealth for your plugin manager and then repeat the process with all of your plugins individually to check if everything works and you aren't missing any required packages (e.g. unzip, ripgrep, python3-venv, etc):
+Open neovim and run checkhealth to see if everything works and you aren't missing any required packages:
 
 ```vim
-:checkhealth lazy
-:checkhealth telescope
-:checkhealth otherpluginname
+:checkhealth
 ```
 
 Don't forget to check that all of your options and keybindings work as expected!
 
 ## Step 5
 
-### Lazygit
-
-Install lazygit using homebrew:
-
-```zsh
-brew update
-brew install lazygit
-lazygit --version # should print '0.44.1'
-```
-
-## Step 6
-
 ### Setting up tmux multiplexer
 
-Install tmux using homebrew:
+Tmux could be preinstalled so check if you have it first, before installing with homebrew:
 
 ```zsh
+tmux -V # should print '3.5a'
 brew update
 brew install tmux
-tmux --version # should print '3.5a'
 ```
