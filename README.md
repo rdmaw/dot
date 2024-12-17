@@ -10,7 +10,7 @@ Made with WSL and macOS in mind.</h4>
 [2 - Package Manager, Git and SSH](#step-2) •
 [3 - ZSH, Node and scripts](#step-3) •
 [4 - Neovim](#step-4) •
-[6 - Tmux](#step-5)
+[5 - Tmux](#step-5)
 
 </div>
 
@@ -440,7 +440,27 @@ Don't forget to check that all of your options and keybindings work as expected!
 Tmux could be preinstalled so check if you have it first, before installing with homebrew:
 
 ```zsh
-tmux -V # should print '3.5a'
+tmux -V # should print 'tmux 3.5a'
 brew update
 brew install tmux
+```
+
+Install tpm and create the tmux configuration file:
+
+```zsh
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+touch ~/.tmux.conf
+```
+
+Add the colorscheme from this repository to tmux:
+
+```zsh
+mkdir -p ~/.config/tmux/plugins/catppuccin
+git clone -b v2.1.2 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux
+```
+
+Pull or copy the '.tmux.conf' file from this repository into your tmux file:
+
+```zsh
+
 ```
