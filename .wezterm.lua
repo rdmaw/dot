@@ -91,11 +91,6 @@ config.colors = {
     }
 }
 
--- Background
--- config.window_background_image = "C:/Users/janan/Desktop/Bilder/terminal/christmastree.jpg"
--- config.window_background_image_hsb = {
---     brightness = 0.14,
--- }
 config.window_background_opacity = 0.95
 
 return config

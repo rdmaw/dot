@@ -4,15 +4,11 @@
 <br />
 Made with WSL and macOS in mind.</h4>
 
-<div align="center">
-
 [1 - Bash, Terminal and WSL](#step-1) •
 [2 - Package Manager, Git and SSH](#step-2) •
 [3 - ZSH, Node and scripts](#step-3) •
 [4 - Neovim](#step-4) •
 [5 - Tmux](#step-5)
-
-</div>
 
 ## Step 1
 
@@ -284,7 +280,6 @@ fi
 After installing on any of the systems, add the installation directory to your Path in your '.zshrc' file:
 
 ```zsh
-export PATH=$PATH:/home/redmaw/.local/bin
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 ```
 
