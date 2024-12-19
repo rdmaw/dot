@@ -4,11 +4,22 @@
 <br />
 Made with WSL and macOS in mind.</h4>
 
-[1 - Bash, Terminal and WSL](#step-1) •
-[2 - Package Manager, Git and SSH](#step-2) •
-[3 - ZSH, Node and scripts](#step-3) •
-[4 - Neovim](#step-4) •
-[5 - Tmux](#step-5)
+---
+
+* [1 - Bash, Terminal and WSL](#step-1)
+* [2 - Package Manager, Git and SSH](#step-2)
+* [3 - ZSH, Node and scripts](#step-3)
+  * [ZSH](#set-up-and-configure-zsh)
+  * [Zinit](#set-up-zinit)
+  * [pokemon-colorscripts](#installing-pokemon-colorscripts)
+  * [Node](#node-and-node-version-manager)
+  * [Oh My Posh](#installing-oh-my-posh-with-a-custom-theme)
+  * [eza, tokei, fzf, fastfetch and zoxide](#installing-eza-tokei-fzf-fastfetch-and-zoxide)
+  * [zshrc](#finishing-off-the-zsh-section)
+* [4 - Neovim](#step-4)
+  * [Required packages](#setting-up-neovim)
+  * [Neovim](#installing-neovim)
+* [5 - Tmux](#step-5)
 
 ## Step 1
 
@@ -118,14 +129,6 @@ ssh -T git@github.com # if successful, should print 'Hi username! You've success
 Automating the SSH key on startup with an agent will be done at the end of Step 3.
 
 ## Step 3
-
-[ZSH](#set-up-and-configure-zsh) •
-[Zinit](#set-up-zinit) •
-[pokemon-colorscripts](#installing-pokemon-colorscripts) •
-[Node](#node-and-node-version-manager) •
-[Oh My Posh](#installing-oh-my-posh-with-a-custom-theme) •
-[eza, tokei, fzf, fastfetch and zoxide](#installing-eza-tokei-fzf-fastfetch-and-zoxide) •
-[zshrc](#finishing-off-the-zsh-section)
 
 ### Set up and configure ZSH
 
@@ -347,9 +350,6 @@ vi ~/.zshrc
 
 ## Step 4
 
-[Required packages](#setting-up-neovim) •
-[Neovim](#installing-neovim)
-
 ### Setting up neovim
 
 Start off by installing some commonly used packages:
@@ -454,8 +454,4 @@ mkdir -p ~/.config/tmux/plugins/catppuccin
 git clone -b v2.1.2 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux
 ```
 
-Pull or copy the '.tmux.conf' file from this repository into your tmux file:
-
-```zsh
-
-```
+Pull or copy the '.tmux.conf' file from this repository into your tmux file.
