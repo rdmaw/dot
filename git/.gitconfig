@@ -1,0 +1,8 @@
+[user]
+	name = rdmaw
+	email = ";)"
+[init]
+	defaultBranch = main
+[core]
+	autocrlf = input
+

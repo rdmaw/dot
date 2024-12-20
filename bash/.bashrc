@@ -116,10 +116,20 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# SSH
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519 2>/dev/null
 
+# PATH
 export PATH=$PATH:~/.local/bin
+export HOMEBREW_NO_ANALYTICS=1
 alias n='nvim'
 
+# KEYBINDS
+set -o vi
+
+# FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# SHELL
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

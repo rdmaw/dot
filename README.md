@@ -6,20 +6,20 @@ Made with WSL and macOS in mind.</h4>
 
 ---
 
-* [1 - Bash, Terminal and WSL](#step-1)
-* [2 - Package Manager, Git and SSH](#step-2)
-* [3 - ZSH, Node and scripts](#step-3)
-  * [ZSH](#set-up-and-configure-zsh)
-  * [Zinit](#set-up-zinit)
-  * [pokemon-colorscripts](#installing-pokemon-colorscripts)
-  * [Node](#node-and-node-version-manager)
-  * [Oh My Posh](#installing-oh-my-posh-with-a-custom-theme)
-  * [eza, tokei, fzf, fastfetch and zoxide](#installing-eza-tokei-fzf-fastfetch-and-zoxide)
-  * [zshrc](#finishing-off-the-zsh-section)
-* [4 - Neovim](#step-4)
-  * [Required packages](#setting-up-neovim)
-  * [Neovim](#installing-neovim)
-* [5 - Tmux](#step-5)
+- [1 - Bash, Terminal and WSL](#step-1)
+- [2 - Package Manager, Git and SSH](#step-2)
+- [3 - ZSH, Node and scripts](#step-3)
+  - [ZSH](#set-up-and-configure-zsh)
+  - [Zinit](#set-up-zinit)
+  - [pokemon-colorscripts](#installing-pokemon-colorscripts)
+  - [Node](#node-and-node-version-manager)
+  - [Oh My Posh](#installing-oh-my-posh-with-a-custom-theme)
+  - [eza, tokei, fzf, fastfetch, zoxide and tree](#installing-eza-tokei-fzf-fastfetch-zoxide-and-tree)
+  - [zshrc](#finishing-off-the-zsh-section)
+- [4 - Neovim](#step-4)
+  - [Required packages](#setting-up-neovim)
+  - [Neovim](#installing-neovim)
+- [5 - Tmux](#step-5)
 
 ## Step 1
 
@@ -33,7 +33,7 @@ wsl --install -d Ubuntu
 
 Restart your terminal or pc, and set up your user.
 
-Pull or copy the .bashrc file contents from this repository to update your own.
+Pull or copy the .bashrc and .vimrc file contents from this repository to update your own.
 
 Additionally, pull or copy the contents from .wezterm.lua if using wezterm (optional):
 
@@ -303,19 +303,19 @@ source ~/.zshrc
 
 Your prompt should have changed to the default prompt theme. To update it match the contents of redmaw.json to the same file included in this repository.
 
-### Installing eza, tokei, fzf, fastfetch and zoxide
+### Installing eza, tokei, fzf, fastfetch, zoxide and tree
 
 Check if you have any of them installed first to avoid duplicates using which:
 
 ```zsh
-for cmd in eza tokei fzf fastfetch zoxide; do which $cmd; done
+for cmd in eza tokei fzf fastfetch zoxide tree; do which $cmd; done
 ```
 
 Install using homebrew:
 
 ```zsh
 brew update
-brew install eza tokei fzf fastfetch zoxide
+brew install eza tokei fzf fastfetch zoxide tree
 ```
 
 Check if the packages are up to date:
