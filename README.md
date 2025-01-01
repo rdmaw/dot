@@ -11,7 +11,7 @@ Made with WSL and macOS in mind.</h4>
 - [3 - ZSH, Node and scripts](#step-3)
   - [ZSH](#set-up-and-configure-zsh)
   - [Zinit](#set-up-zinit)
-  - [pokemon-colorscripts](#installing-pokemon-colorscripts)
+  - [krabby](#installing-krabby)
   - [Node](#node-and-node-version-manager)
   - [Oh My Posh](#installing-oh-my-posh-with-a-custom-theme)
   - [eza, tokei, fzf, fastfetch, zoxide and tree](#installing-eza-tokei-fzf-fastfetch-zoxide-and-tree)
@@ -20,6 +20,7 @@ Made with WSL and macOS in mind.</h4>
   - [Required packages](#setting-up-neovim)
   - [Neovim](#installing-neovim)
 - [5 - Tmux](#step-5)
+- [6 - Extras](#step-6)
 
 ## Step 1
 
@@ -150,7 +151,7 @@ zsh --version # should print '5.9'
 
 Create an empty .zshrc file inside your home directory:
 
-```zsh
+```bash
 touch ~/.zshrc
 ```
 
@@ -164,117 +165,126 @@ chsh -s $(which zsh)
 
 Install zinit using curl:
 
-```zsh
+```bash
 bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
 ```
 
 Reload your terminal and compile zinit:
 
-```zsh
+```bash
 zinit self-update
 ```
 
 Reload again and check if zinit is installed by running:
 
-```zsh
+```bash
 zinit zstatus
 ```
 
-### Installing pokemon-colorscripts
+### Installing krabby
 
-Check if python3 is installed (required):
+Check if python3 is installed (might not be required, but important anyway):
 
-```zsh
+```bash
 python3 --version # should print 'Python 3.12.3'
 which python3
 ```
 
 Set up if not installed:
 
-```zsh
+```bash
 sudo apt update
 sudo apt install python3 -y
 ```
 
 Install pip (optional):
 
-```zsh
+```bash
 sudo apt install python3-pip -y
 pip3 --version # should print 'pip 24.0'
 ```
 
 Install python3-venv (optional, but required later for some formatters):
 
-```zsh
+```bash
 sudo apt update
 sudo apt install -y python3-venv
 ```
 
 If you're on macOS, install using homebrew (might be preinstalled):
 
-```zsh
+```bash
 brew update
 brew install python
 python3 --version
 pip3 --version
 ```
 
-Lastly, install pokemon-colorscrips:
+Lastly, install krabby using homebrew:
 
-```zsh
-git clone https://gitlab.com/phoneybadger/pokemon-colorscripts.git
-cd pokemon-colorscripts
-sudo ./install.sh
+```bash
+brew update
+brew tap yannjor/krabby
+brew install krabby
+```
+
+If the install requires cargo, install cargo/rust:
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+rustup update
+cargo --version # should print '1.83.0'
 ```
 
 You can test to see if it works by printing any pokemon you like:
 
-```zsh
-pokemon-colorscripts -n flareon --no-title
+```bash
+cl && krabby random --no-title --padding-left 2
+cl && krabby name flareon --no-title --padding-left 2
 ```
 
 ### Node and node version manager
 
 Install node version manager using curl and source your '.zshrc' file:
 
-```zsh
+```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 source ~/.zshrc
 ```
 
 Then install node using the version manager:
 
-```zsh
+```bash
 nvm install 23
-node -v # should print `v23.4.0`
-npm -v # should print `10.9.2`
+node -v # should print 'v23.4.0'
+npm -v # should print '10.9.2'
 ```
 
 ### Installing Oh My Posh with a custom theme
 
 Firstly, install unzip (required):
 
-```zsh
+```bash
 sudo apt update
 sudo apt install unzip
 ```
 
 Secondly, install Oh My Posh to your system using curl:
 
-```zsh
+```bash
 curl -s https://ohmyposh.dev/install.sh | bash -s
 ```
 
 If you're on macOS, install using homebrew:
 
-```zsh
+```bash
 brew update
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
 ```
 
 Also add the following line to avoid loading Oh My Posh in the default macOS terminal, which is unsupported:
 
-```zsh
+```bash
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   eval "$(oh-my-posh init zsh)"
 fi
@@ -282,13 +292,13 @@ fi
 
 After installing on any of the systems, add the installation directory to your Path in your '.zshrc' file:
 
-```zsh
+```bash
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 ```
 
 Create a config file for your custom prompt and paste the contents from redmaw.json into this file:
 
-```zsh
+```bash
 mkdir -p ~/.config/ohmyposh && cd ~/.config/ohmyposh
 oh-my-posh config export --format json --output ~/.config/ohmyposh/redmaw.json
 cd ohmyposh && vi redmaw.json
@@ -296,7 +306,7 @@ cd ohmyposh && vi redmaw.json
 
 Configure Oh My Posh to use your custom json file by adding the following line to your ',zshrc' file, and then sourcing it:
 
-```zsh
+```bash
 eval "$(oh-my-posh init zsh --config '~/.config/ohmyposh/redmaw.json')"
 source ~/.zshrc
 ```
@@ -307,20 +317,20 @@ Your prompt should have changed to the default prompt theme. To update it match 
 
 Check if you have any of them installed first to avoid duplicates using which:
 
-```zsh
+```bash
 for cmd in eza tokei fzf fastfetch zoxide tree; do which $cmd; done
 ```
 
 Install using homebrew:
 
-```zsh
+```bash
 brew update
 brew install eza tokei fzf fastfetch zoxide tree
 ```
 
 Check if the packages are up to date:
 
-```zsh
+```bash
 eza --version # should print 'v0.20.12'
 tokei --version # should print '12.1.2'
 fzf --version # should print '0.57.0'
@@ -332,19 +342,19 @@ zoxide --version # should print '0.9.6'
 
 If you're on linux or WSL, add the following line under "# PATH" in your '.zshrc' file:
 
-```zsh
+```bash
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 ```
 
 If you're on macOS, add this line instead:
 
-```zsh
+```bash
 eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
 Open your .zshrc file and match the contents to the repository file:
 
-```zsh
+```bash
 vi ~/.zshrc
 ```
 
@@ -354,41 +364,41 @@ vi ~/.zshrc
 
 Start off by installing some commonly used packages:
 
-```zsh
+```bash
 sudo apt update
 sudo apt install ninja-build gettext cmake curl
 ```
 
 Secondly, install fd-find and ripgrep, as they're both needed for telescope:
 
-```zsh
+```bash
 brew update
 brew install fd ripgrep
 ```
 
 If you're on macOS, install them using homebrew:
 
-```zsh
+```bash
 brew update
 brew install curl cmake make unzip ninja gettext fd ripgrep
 ```
 
 If you didn't do it earlier, install python3-venv, which is required for Mason to install python related formatters:
 
-```zsh
+```bash
 sudo apt update
 sudo apt install -y python3-venv
 ```
 
 For macOS, venv should already be available:
 
-```zsh
+```bash
 python3 -m venv --help
 ```
 
 If not, install it by using homebrew:
 
-```zsh
+```bash
 brew update
 brew install python
 ```
@@ -397,7 +407,7 @@ brew install python
 
 Install lazygit using homebrew:
 
-```zsh
+```bash
 brew update
 brew install lazygit
 lazygit --version # should print 'version=0.44.1'
@@ -407,7 +417,7 @@ lazygit --version # should print 'version=0.44.1'
 
 Install neovim using homebrew:
 
-```zsh
+```bash
 brew update
 brew install neovim
 nvim -v # should print 'NVIM v0.10.2'
@@ -415,7 +425,7 @@ nvim -v # should print 'NVIM v0.10.2'
 
 Initialize your nvim folder by adding your neovim config:
 
-```zsh
+```bash
 cd ~/.config
 git clone git@github.com:username/nvim.git
 ```
@@ -434,7 +444,7 @@ Don't forget to check that all of your options and keybindings work as expected!
 
 Tmux could be preinstalled so check if you have it first, before installing with homebrew:
 
-```zsh
+```bash
 tmux -V # should print 'tmux 3.5a'
 brew update
 brew install tmux
@@ -442,16 +452,27 @@ brew install tmux
 
 Install tpm and create the tmux configuration file:
 
-```zsh
+```bash
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 touch ~/.tmux.conf
 ```
 
 Add the colorscheme from this repository to tmux:
 
-```zsh
+```bash
 mkdir -p ~/.config/tmux/plugins/catppuccin
 git clone -b v2.1.2 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux
 ```
 
 Pull or copy the '.tmux.conf' file from this repository into your tmux file.
+
+## Step 6
+
+### Unimatrix
+
+Install using curl:
+
+```bash
+sudo curl -L https://raw.githubusercontent.com/will8211/unimatrix/master/unimatrix.py -o /usr/local/bin/unimatrix
+sudo chmod a+rx /usr/local/bin/unimatrix
+```

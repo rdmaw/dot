@@ -79,5 +79,15 @@ alias so="source"
 alias e="exit"; alias q="exit"
 alias c="clear"; alias cl="clear"; 
 alias n="nvim"
-alias p="pokemon-colorscripts --no-title -n"
 alias wez="wezterm.exe"
+alias m="unimatrix -n -s 96 -l o"
+
+# Krabby colorscripts
+p() {
+    cl && krabby name --no-title --padding-left 2 "$@"
+}
+
+p-random() {
+    cl && krabby random --no-title --padding-left 2 "$@"
+}
+
