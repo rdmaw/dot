@@ -33,26 +33,41 @@ wsl.exe --install archlinux
 ```
 
 Restart your pc and refresh packages:
-```bat
+```bash
 pacman -Syu
 ```
 
-Set up a user with a password:
-```bat
+Set up root password, then a user with a password (remember to give user root/sudo access):
+```bash
+passwd
+```
+```bash
 useradd -m <user>
 passwd <user>
 ```
 
-Pull or copy the .bashrc and .vimrc file contents from this repository to update your own.
-Additionally, pull or copy the contents from .wezterm.lua if using wezterm (optional):
-
+Install sudo, then set up sudo access (then uncomment %wheel ALL):
 ```bash
-cd && touch .wezterm.lua
-vi .wezterm.lua
+pacman -S sudo vim
+groupadd wheel
+usermod -a -G <user>
+EDITOR=vim visudo
 ```
 
-Install the official WSL extension for VSCode and open any repo:
+Add this to your wsl.conf inside /etc/ in arch:
+```bash
+[user]
+default=<user>
+```
 
+Make sure you're inside your $HOME and clone this repo:
+```bash
+cd ~
+
+```
+
+Download and paste the .wezterm.lua file in your users folder in windows if using wezterm (optional).
+Install the official WSL extension for VSCode and open any repo:
 ```bash
 code .
 ```
@@ -61,68 +76,47 @@ code .
 
 ### Package Managers and Git version control
 
-Install homebrew and follow the instructions:
-
+Configure locale:
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+sudo pacman -S glibc
+sudo vim /etc/locale.gen
 ```
 
-Remove aggregate formulae and cask analytics by adding the following line to your .bashrc:
-
+Uncomment the following (pick your own preferred language and region):
 ```bash
-export HOMEBREW_NO_ANALYTICS=1
+#en_US.UTF-8 UTF-8
+#nb_NO.UTF-8 UTF-8
 ```
 
-Add homebrew to your Path, replacing user with your UNIX username:
-
+Save the file and generate locale:
 ```bash
-echo >> /home/user/.bashrc
-echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/user/.bashrc
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+:wq
+sudo locale-gen
 ```
 
-Install homebrew's dependencies using apt-get:
-
+Install git:
 ```bash
-sudo apt update
-sudo apt-get install build-essential
-```
-
-Also install GCC as recommended by homebrew:
-
-```bash
-brew update
-brew install gcc
-```
-
-Install git using homebrew:
-
-```bash
-brew update
-brew install git
-git -v # should print 'git version 2.47.1'
+sudo pacman -S git
 ```
 
 Configure globals (optional):
-
 ```bash
-git config --global user.name "username"
-git config --global user.email "12345678+username@users.noreply.github.com"
+git config --global user.name "<user>"
+git config --global user.email "12345678+<user>@users.noreply.github.com"
 git config --global init.defaultBranch main
 git config --global core.autocrlf input
 ```
 
 Set up ssh connection (optional):
-
 ```bash
+sudo pacman -S openssh
 ssh-keygen -t ed25519 -C "12345678+username@users.noreply.github.com"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 cat ~/.ssh/id_ed25519.pub
 ```
 
-Highlight and copy the output (skip, if not following above):
-
+Highlight and copy the cat output (skip, if not following above):
 1. Log in to [github.com](https://github.com/)
 2. Go to Settings -> SSH and GPG keys under the 'Access' section
 3. Create New SSH key and add a custom title (e.g. your terminal name)
@@ -130,12 +124,20 @@ Highlight and copy the output (skip, if not following above):
 5. Add SSH key
 
 Test the SSH connection, and answer yes to connect (skip, if not following above):
-
 ```bash
-ssh -T git@github.com # if successful, should print 'Hi username! You've successfully authenticated, but GitHub does not provide shell access.'
+ssh -T git@github.com # if successful, should print 'Hi <user>! You've successfully authenticated, but GitHub does not provide shell access.'
 ```
 
 Automating the SSH key on startup with an agent will be done at the end of Step 3.
+
+Install GNU Stow and clone this repository now that you've ssh established:
+```bash
+sudo pacman -S stow
+cd ~
+git clone git@github.com:rdmaw/dotfiles.git
+```
+
+Pull or copy the .bashrc and .vimrc file contents from this repository to update your own.
 
 ## Step 3
 
