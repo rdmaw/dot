@@ -110,7 +110,7 @@ git config --global core.autocrlf input
 Set up ssh connection (optional):
 ```bash
 sudo pacman -S openssh
-ssh-keygen -t ed25519 -C "12345678+username@users.noreply.github.com"
+ssh-keygen -t ed25519 -C "12345678+<user>@users.noreply.github.com"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 cat ~/.ssh/id_ed25519.pub
@@ -130,14 +130,7 @@ ssh -T git@github.com # if successful, should print 'Hi <user>! You've successfu
 
 Automating the SSH key on startup with an agent will be done at the end of Step 3.
 
-Install GNU Stow and clone this repository now that you've ssh established:
-```bash
-sudo pacman -S stow
-cd ~
-git clone git@github.com:rdmaw/dotfiles.git
-```
-
-Pull or copy the .bashrc and .vimrc file contents from this repository to update your own.
+Create .bashrc and .vimrc files if they don't exist and update them with the repo versions.
 
 ## Step 3
 
