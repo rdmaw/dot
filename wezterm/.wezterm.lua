@@ -35,7 +35,6 @@ config.window_padding = {
     top = 3,
     bottom = 0,
 }
-
 -- Font
 config.font = wezterm.font_with_fallback{
     {family = "Berkeley Mono", weight = "Regular"},
@@ -51,7 +50,6 @@ config.default_cursor_style = "SteadyBlock"
 
 -- Catppuccin
 config.colors = {
-    
     cursor_fg = "#232136",
     cursor_bg = "#dcdec9",
     cursor_border = "#1e1e2e",
@@ -65,8 +63,8 @@ config.colors = {
     scrollbar_thumb = "#B3E1A3",
     split = "#B3E1A3",
     
-    ansi = {"#6E6C7C", "#E28C8C", "#B3E1A3", "#EADDA0", "#A4B9EF", "#C6AAE8" ,"#F0AFE1" ,"#D7DAE0"},
-    brights = {"#6E6C7C", "#E28C8C", "#B3E1A3", "#EADDA0", "#A4B9EF", "#C6AAE8", "#F0AFE1", "#D7DAE0"},
+    -- ansi = {"#6E6C7C", "#E28C8C", "#B3E1A3", "#EADDA0", "#A4B9EF", "#C6AAE8" ,"#F0AFE1" ,"#D7DAE0"},
+    -- brights = {"#6E6C7C", "#E28C8C", "#B3E1A3", "#EADDA0", "#A4B9EF", "#C6AAE8", "#F0AFE1", "#D7DAE0"},
     
     tab_bar = {
         background = "#1e1e2e",
