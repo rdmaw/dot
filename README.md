@@ -26,18 +26,24 @@ Made with WSL and macOS in mind.</h4>
 
 ### BASH, WSL and terminal environment
 
-Start by installing the WSL distro (requires WSL2):
+Start by installing any WSL distro (requires WSL2) (.exe installs from microsoft store which is recommended):
 
+Arch:
 ```bat
 wsl.exe --install archlinux
 ```
 
-Restart your pc and refresh packages:
+Ubuntu:
+```bat
+wsl.exe --install Ubuntu
+```
+
+Arch: Restart your pc and refresh system:
 ```bash
 pacman -Syu
 ```
 
-Set up root password, then a user with a password (remember to give user root/sudo access):
+Arch: Set up root password, then a user with a password (remember to give user root/sudo access):
 ```bash
 passwd
 ```
@@ -46,7 +52,7 @@ useradd -m <user>
 passwd <user>
 ```
 
-Install sudo, then set up sudo access (then uncomment %wheel ALL):
+Arch: Install sudo, then set up sudo access (then uncomment %wheel ALL):
 ```bash
 pacman -S sudo vim
 groupadd wheel
@@ -54,20 +60,14 @@ usermod -a -G <user>
 EDITOR=vim visudo
 ```
 
-Add this to your wsl.conf inside /etc/ in arch:
+Arch: Add this to your wsl.conf inside /etc/ in arch:
 ```bash
 [user]
 default=<user>
 ```
 
-Make sure you're inside your $HOME and clone this repo:
-```bash
-cd ~
-
-```
-
 Download and paste the .wezterm.lua file in your users folder in windows if using wezterm (optional).
-Install the official WSL extension for VSCode and open any repo:
+Install the official WSL extension for VSCode and open any folder to test:
 ```bash
 code .
 ```
@@ -76,27 +76,62 @@ code .
 
 ### Package Managers and Git version control
 
-Configure locale:
+Arch: Configure locale:
 ```bash
 sudo pacman -S glibc
 sudo vim /etc/locale.gen
 ```
 
-Uncomment the following (pick your own preferred language and region):
+Arch: Uncomment the following (pick your own preferred language and region):
 ```bash
 #en_US.UTF-8 UTF-8
 #nb_NO.UTF-8 UTF-8
 ```
 
-Save the file and generate locale:
+Arch: Save the file and generate locale:
 ```bash
 :wq
 sudo locale-gen
 ```
 
-Install git:
+Arch: Install git:
 ```bash
 sudo pacman -S git
+```
+
+Ubuntu: Install homebrew and follow the instructions:
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Remove aggregate formulae and cask analytics by adding the following line to your .bashrc:
+```bash
+export HOMEBREW_NO_ANALYTICS=1
+```
+
+Add homebrew to your Path, replacing user with your UNIX username:
+```bash
+echo >> /home/user/.bashrc
+echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/user/.bashrc
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+```
+
+Install homebrew's dependencies using apt-get:
+```bash
+sudo apt update
+sudo apt-get install build-essential
+```
+
+Also install GCC as recommended by homebrew:
+```bash
+brew update
+brew install gcc
+```
+
+Install git using homebrew:
+```bash
+brew update
+brew install git
 ```
 
 Configure globals (optional):
