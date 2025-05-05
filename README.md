@@ -26,16 +26,24 @@ Made with WSL and macOS in mind.</h4>
 
 ### BASH, WSL and terminal environment
 
-Start by installing WSL using cmd or powershell:
+Start by installing the WSL distro (requires WSL2):
 
 ```bat
-wsl --install -d Ubuntu
+wsl.exe --install archlinux
 ```
 
-Restart your terminal or pc, and set up your user.
+Restart your pc and refresh packages:
+```bat
+pacman -Syu
+```
+
+Set up a user with a password:
+```bat
+useradd -m <user>
+passwd <user>
+```
 
 Pull or copy the .bashrc and .vimrc file contents from this repository to update your own.
-
 Additionally, pull or copy the contents from .wezterm.lua if using wezterm (optional):
 
 ```bash
@@ -43,7 +51,7 @@ cd && touch .wezterm.lua
 vi .wezterm.lua
 ```
 
-Set up Remote - WSL (only needed for WSL environments, and if using VSCode):
+Install the official WSL extension for VSCode and open any repo:
 
 ```bash
 code .
