@@ -32,6 +32,7 @@ alias n='nvim'
 alias grep='grep --color=auto'
 
 PS1='[\u@\h \W]\$ '
+eval "$(zoxide init --cmd cd bash)"
 
 # LOCALE
 export LANGUAGE=en_US.UTF-8
