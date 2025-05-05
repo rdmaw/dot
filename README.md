@@ -48,16 +48,16 @@ Arch: Set up root password, then a user with a password (remember to give user r
 passwd
 ```
 ```bash
-useradd -m <user>
+groupadd wheel
+useradd -m -G wheel <user>
 passwd <user>
 ```
 
-Arch: Install sudo, then set up sudo access (then uncomment %wheel ALL):
+Arch: Install core, then set up sudo access:
 ```bash
-pacman -S sudo vim
-groupadd wheel
+pacman -S base-devel sudo vim curl
 usermod -a -G <user>
-EDITOR=vim visudo
+EDITOR=vim visudo # Uncomment "#%wheel ALL=(ALL) ALL" to give sudo privileges to users in wheel group
 ```
 
 Arch: Add this to your wsl.conf inside /etc/ in arch:
@@ -172,7 +172,6 @@ Create .bashrc and .vimrc files if they don't exist and update them with the rep
 ### Set up and configure ZSH
 
 Install ZSH using apt:
-
 ```bash
 sudo apt update
 sudo apt install zsh -y
@@ -180,7 +179,6 @@ zsh --version # should print 'zsh 5.9'
 ```
 
 If you're on macOS, install using homebrew (included since Catalina):
-
 ```bash
 brew update
 brew install zsh
@@ -188,13 +186,11 @@ zsh --version # should print '5.9'
 ```
 
 Create an empty .zshrc file inside your home directory:
-
 ```bash
 touch ~/.zshrc
 ```
 
 Set ZSH to be the default shell and reload your terminal:
-
 ```bash
 chsh -s $(which zsh)
 ```
@@ -208,13 +204,11 @@ bash -c "$(curl --fail --show-error --silent --location https://raw.githubuserco
 ```
 
 Reload your terminal and compile zinit:
-
 ```bash
 zinit self-update
 ```
 
 Reload again and check if zinit is installed by running:
-
 ```bash
 zinit zstatus
 ```
@@ -222,35 +216,30 @@ zinit zstatus
 ### Installing krabby
 
 Check if python3 is installed (might not be required, but important anyway):
-
 ```bash
 python3 --version # should print 'Python 3.12.3'
 which python3
 ```
 
 Set up if not installed:
-
 ```bash
 sudo apt update
 sudo apt install python3 -y
 ```
 
 Install pip (optional):
-
 ```bash
 sudo apt install python3-pip -y
 pip3 --version # should print 'pip 24.0'
 ```
 
 Install python3-venv (optional, but required later for some formatters):
-
 ```bash
 sudo apt update
 sudo apt install -y python3-venv
 ```
 
 If you're on macOS, install using homebrew (might be preinstalled):
-
 ```bash
 brew update
 brew install python
@@ -259,7 +248,6 @@ pip3 --version
 ```
 
 Lastly, install krabby using homebrew:
-
 ```bash
 brew update
 brew tap yannjor/krabby
@@ -267,7 +255,6 @@ brew install krabby
 ```
 
 If the install requires cargo, install cargo/rust:
-
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 rustup update
@@ -275,7 +262,6 @@ cargo --version # should print '1.83.0'
 ```
 
 You can test to see if it works by printing any pokemon you like:
-
 ```bash
 cl && krabby random --no-title --padding-left 2
 cl && krabby name flareon --no-title --padding-left 2
@@ -284,44 +270,48 @@ cl && krabby name flareon --no-title --padding-left 2
 ### Node and node version manager
 
 Install node version manager using curl and source your '.zshrc' file:
-
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 source ~/.zshrc
 ```
 
 Then install node using the version manager:
-
 ```bash
 nvm install 23
 node -v # should print 'v23.4.0'
 npm -v # should print '10.9.2'
 ```
 
+Arch: For arch simply do:
+```bash
+sudo pacman -S nodejs npm
+```
+
 ### Installing Oh My Posh with a custom theme
 
 Firstly, install unzip (required):
-
 ```bash
 sudo apt update
 sudo apt install unzip
 ```
 
-Secondly, install Oh My Posh to your system using curl:
+Arch:
+```bash
+sudo pacman -S unzip
+```
 
+Secondly, install Oh My Posh to your system using curl:
 ```bash
 curl -s https://ohmyposh.dev/install.sh | bash -s
 ```
 
 If you're on macOS, install using homebrew:
-
 ```bash
 brew update
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
 ```
 
 Also add the following line to avoid loading Oh My Posh in the default macOS terminal, which is unsupported:
-
 ```bash
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   eval "$(oh-my-posh init zsh)"
@@ -329,13 +319,11 @@ fi
 ```
 
 After installing on any of the systems, add the installation directory to your Path in your '.zshrc' file:
-
 ```bash
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 ```
 
 Create a config file for your custom prompt and paste the contents from redmaw.json into this file:
-
 ```bash
 mkdir -p ~/.config/ohmyposh && cd ~/.config/ohmyposh
 oh-my-posh config export --format json --output ~/.config/ohmyposh/redmaw.json
@@ -343,7 +331,6 @@ cd ohmyposh && vi redmaw.json
 ```
 
 Configure Oh My Posh to use your custom json file by adding the following line to your ',zshrc' file, and then sourcing it:
-
 ```bash
 eval "$(oh-my-posh init zsh --config '~/.config/ohmyposh/redmaw.json')"
 source ~/.zshrc
@@ -351,23 +338,25 @@ source ~/.zshrc
 
 Your prompt should have changed to the default prompt theme. To update it match the contents of redmaw.json to the same file included in this repository.
 
-### Installing eza, tokei, fzf, fastfetch, zoxide and tree
+### Installing eza, tokei, fzf, fastfetch (or neofetch :D), zoxide and tree
 
 Check if you have any of them installed first to avoid duplicates using which:
-
 ```bash
 for cmd in eza tokei fzf fastfetch zoxide tree; do which $cmd; done
 ```
 
 Install using homebrew:
-
 ```bash
 brew update
 brew install eza tokei fzf fastfetch zoxide tree
 ```
 
-Check if the packages are up to date:
+Arch:
+```bash
+sudo pacman -S eza tokei fzf fastfetch zoxide tree
+```
 
+Check if the packages are up to date:
 ```bash
 eza --version # should print 'v0.20.12'
 tokei --version # should print '12.1.2'
@@ -379,27 +368,25 @@ zoxide --version # should print '0.9.6'
 ### Finishing off the ZSH section
 
 If you're on linux or WSL, add the following line under "# PATH" in your '.zshrc' file:
-
 ```bash
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 ```
 
 If you're on macOS, add this line instead:
-
 ```bash
 eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
 Open your .zshrc file and match the contents to the repository file:
-
 ```bash
-vi ~/.zshrc
+vim ~/.zshrc
 ```
 
 ## Step 4
 
 ### Setting up neovim
 
+Ubuntu:
 Start off by installing some commonly used packages:
 
 ```bash
@@ -459,6 +446,11 @@ Install neovim using homebrew:
 brew update
 brew install neovim
 nvim -v # should print 'NVIM v0.10.2'
+```
+
+Arch:
+```bash
+sudo pacman -S neovim lazygit fd ripgrep unzip wget python python-pip
 ```
 
 Initialize your nvim folder by adding your neovim config:
