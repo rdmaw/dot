@@ -9,11 +9,12 @@ end)
 
 config.wsl_domains = {
     {
-      name = 'WSL:Ubuntu',
-      distribution = 'Ubuntu',
+      name = 'WSL:Arch',
+      distribution = 'archlinux',
+      default_cwd = "~",
     },
 }
-config.default_prog = { "ubuntu.exe" }
+config.default_domain = "WSL:Arch"
 
 config.max_fps = 240
 config.animation_fps = 240
@@ -31,29 +32,31 @@ config.enable_tab_bar = false
 config.window_padding = {
     left = 0,
     right = 0,
-    top = 0,
+    top = 3,
     bottom = 0,
 }
 
 -- Font
-config.font = wezterm.font("IosevkaTerm Nerd Font", { weight = "Regular"})
-config.font_size = 18
-config.line_height = 0.8
-config.freetype_load_flags = 'NO_HINTING'
-config.freetype_load_target = "Light"
-config.freetype_render_target = "HorizontalLcd"
+config.font = wezterm.font_with_fallback{
+    {family = "Berkeley Mono", weight = "Regular"},
+    {family = "Symbols Nerd Font", weight = "Regular"},
+}
+
+config.font_size = 15
+config.line_height = 1
+config.freetype_load_flags = "NO_HINTING"
 
 -- Cursor
 config.default_cursor_style = "SteadyBlock"
 
-    -- Catppuccin
+-- Catppuccin
 config.colors = {
     
     cursor_fg = "#232136",
     cursor_bg = "#dcdec9",
     cursor_border = "#1e1e2e",
 
-    background = "#1e1e2e",
+    background = "#1d2021",
     foreground = "#D7DAE0",
     
     selection_bg = "#2D293B",
@@ -90,7 +93,6 @@ config.colors = {
         }
     }
 }
-
-config.window_background_opacity = 0.95
+config.window_background_opacity = 1
 
 return config
