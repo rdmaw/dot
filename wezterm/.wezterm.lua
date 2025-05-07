@@ -62,9 +62,9 @@ config.colors = {
     
     scrollbar_thumb = "#B3E1A3",
     split = "#B3E1A3",
-    
-    -- ansi = {"#6E6C7C", "#E28C8C", "#B3E1A3", "#EADDA0", "#A4B9EF", "#C6AAE8" ,"#F0AFE1" ,"#D7DAE0"},
-    -- brights = {"#6E6C7C", "#E28C8C", "#B3E1A3", "#EADDA0", "#A4B9EF", "#C6AAE8", "#F0AFE1", "#D7DAE0"},
+
+    ansi = {"#2E3440", "#BF616A", "#A3BE8C", "#EBCB8B", "#5E81AC", "#B48EAD" ,"#81A1C1" ,"#D8DEE9"},
+    brights = {"#3B4252", "#BF616A", "#A3BE8C", "#EBCB8B", "#5E81AC", "#B48EAD", "#88C0D0", "#ECEFF4"},
     
     tab_bar = {
         background = "#1e1e2e",
