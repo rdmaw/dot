@@ -9,12 +9,12 @@ end)
 
 config.wsl_domains = {
     {
-      name = 'WSL:Arch',
+      name = 'WSL:archlinux',
       distribution = 'archlinux',
       default_cwd = "~",
     },
 }
-config.default_domain = "WSL:Arch"
+config.default_domain = "WSL:archlinux"
 
 config.max_fps = 240
 config.animation_fps = 240
