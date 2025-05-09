@@ -1,29 +1,22 @@
-local wezterm = require("wezterm")
+local wezterm = require('wezterm')
 local config = wezterm.config_builder()
 local mux = wezterm.mux
 
-wezterm.on("gui-startup", function(cmd)
+wezterm.on('gui-startup', function(cmd)
     local tab, pane, window = mux.spawn_window(cmd or {})
     window:gui_window():toggle_fullscreen()
 end)
 
-config.wsl_domains = {
-    {
-      name = 'WSL:archlinux',
-      distribution = 'archlinux',
-      default_cwd = "~",
-    },
-}
-config.default_domain = "WSL:archlinux"
+config.default_domain = 'WSL:archlinux'
 
 config.max_fps = 240
 config.animation_fps = 240
 
 config.keys = {
     {
-        key = "v",
-        mods = "CTRL",
-        action = wezterm.action.PasteFrom "Clipboard",
+        key = 'v',
+        mods = 'CTRL',
+        action = wezterm.action.PasteFrom 'Clipboard',
     },
 }
 
@@ -36,17 +29,14 @@ config.window_padding = {
     bottom = 0,
 }
 -- Font
-config.font = wezterm.font_with_fallback{
-    {family = "Berkeley Mono", weight = "Regular"},
-    {family = "Symbols Nerd Font", weight = "Regular"},
-}
+config.font = wezterm.font_with_fallback { 'Berkeley Mono', 'Symbols Nerd Font' }
 
 config.font_size = 15
 config.line_height = 1
-config.freetype_load_flags = "NO_HINTING"
+config.freetype_load_flags = 'NO_HINTING'
 
 -- Cursor
-config.default_cursor_style = "SteadyBlock"
+config.default_cursor_style = 'SteadyBlock'
 
 -- Catppuccin
 config.colors = {
