@@ -14,7 +14,7 @@ Made with WSL and macOS in mind.</h4>
   - [krabby](#installing-krabby)
   - [Node](#node-and-node-version-manager)
   - [Oh My Posh](#installing-oh-my-posh-with-a-custom-theme)
-  - [eza, tokei, fzf, fastfetch, zoxide and tree](#installing-eza-tokei-fzf-fastfetch-zoxide-and-tree)
+  - [eza, tokei, fzf, fastfetch, zoxide and tree](#installing-eza-tokei-fzf-fastfetch-or-neofetch-d-zoxide-and-tree)
   - [zshrc](#finishing-off-the-zsh-section)
 - [4 - Neovim](#step-4)
   - [Required packages](#setting-up-neovim)
@@ -26,19 +26,21 @@ Made with WSL and macOS in mind.</h4>
 
 ### BASH, WSL and terminal environment
 
-Start by installing any WSL distro (requires WSL2) (.exe installs from microsoft store which is recommended):
+Start by installing WSL from the [store](https://aka.ms/wslstorepage), then restart your computer and download your distro of choice:
 
 Arch:
 ```bat
-wsl.exe --install archlinux
+wsl --install archlinux
+wsl.exe -d archlinux
 ```
 
 Ubuntu:
 ```bat
-wsl.exe --install Ubuntu
+wsl --install Ubuntu
+wsl.exe -d Ubuntu
 ```
 
-Arch: Restart your pc and refresh system:
+Arch: Refresh packages:
 ```bash
 pacman -Syu
 ```
@@ -48,23 +50,25 @@ Arch: Set up root password, then a user with a password (remember to give user r
 passwd
 ```
 ```bash
-groupadd wheel
 useradd -m -G wheel <user>
 passwd <user>
 ```
 
-Arch: Install core, then set up sudo access:
+Arch: Set up sudo access:
 ```bash
-pacman -S base-devel sudo vim curl
-usermod -a -G <user>
-EDITOR=vim visudo # Uncomment "#%wheel ALL=(ALL) ALL" to give sudo privileges to users in wheel group
+pacman -S sudo vim
+EDITOR=vim visudo # Uncomment the line "#%wheel ALL=(ALL) ALL" to give sudo privileges to all users in wheel group
 ```
 
-Arch: Add this to your wsl.conf inside /etc/ in arch:
+Arch: Add this to your wsl.conf inside /etc/ in arch, then shutdownn:
 ```bash
 [user]
 default=<user>
 ```
+```bat
+wsl --shutdown archlinux
+```
+
 
 Download and paste the .wezterm.lua file in your users folder in windows if using wezterm (optional).
 Install the official WSL extension for VSCode and open any folder to test:
@@ -84,8 +88,8 @@ sudo vim /etc/locale.gen
 
 Arch: Uncomment the following (pick your own preferred language and region):
 ```bash
-#en_US.UTF-8 UTF-8
-#nb_NO.UTF-8 UTF-8
+en_US.UTF-8 UTF-8
+nb_NO.UTF-8 UTF-8 # Pick your own language
 ```
 
 Arch: Save the file and generate locale:
