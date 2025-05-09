@@ -225,6 +225,11 @@ python3 --version # should print 'Python 3.12.3'
 which python3
 ```
 
+Arch:
+```bash
+sudo pacman -S python python-pip
+```
+
 Set up if not installed:
 ```bash
 sudo apt update
@@ -265,10 +270,25 @@ rustup update
 cargo --version # should print '1.83.0'
 ```
 
+If on arch, install using yay:
+```bash
+sudo pacman -S --needed base-devel
+cd ~
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+```
+
+If installed successfully, remove the git folder and install krabby:
+```bash
+rm -rf ~/yay
+yay -S krabby-bin
+```
+
 You can test to see if it works by printing any pokemon you like:
 ```bash
-cl && krabby random --no-title --padding-left 2
-cl && krabby name flareon --no-title --padding-left 2
+krabby random --no-title --padding-left 2
+krabby name flareon --no-title --padding-left 2
 ```
 
 ### Node and node version manager
