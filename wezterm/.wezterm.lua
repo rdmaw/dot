@@ -1,4 +1,4 @@
-local wezterm = require('wezterm')
+wezterm = require('wezterm')
 local config = wezterm.config_builder()
 local mux = wezterm.mux
 
@@ -11,14 +11,6 @@ config.default_domain = 'WSL:archlinux'
 
 config.max_fps = 240
 config.animation_fps = 240
-
-config.keys = {
-    {
-        key = 'v',
-        mods = 'CTRL',
-        action = wezterm.action.PasteFrom 'Clipboard',
-    },
-}
 
 config.enable_tab_bar = false
 
@@ -34,9 +26,6 @@ config.font = wezterm.font_with_fallback { 'Berkeley Mono', 'Symbols Nerd Font' 
 config.font_size = 15
 config.line_height = 1
 config.freetype_load_flags = 'NO_HINTING'
-
--- Cursor
-config.default_cursor_style = 'SteadyBlock'
 
 -- Catppuccin
 config.colors = {
