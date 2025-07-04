@@ -524,9 +524,9 @@ sudo curl -L https://raw.githubusercontent.com/will8211/unimatrix/master/unimatr
 sudo chmod a+rx /usr/local/bin/unimatrix
 ```
 
-### LightningCSS and Terser
+### LightningCSS, Terser and html-minifier-terser
 
-Install globally `-g` or locally `--save-dev`
+Install locally `--save-dev` or globally `-g`:
 ```bash
-npm install -g lightningcss-cli terser
+npm install -g lightningcss-cli terser html-minifier-terser
 ```
