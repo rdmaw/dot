@@ -523,3 +523,10 @@ Install using curl:
 sudo curl -L https://raw.githubusercontent.com/will8211/unimatrix/master/unimatrix.py -o /usr/local/bin/unimatrix
 sudo chmod a+rx /usr/local/bin/unimatrix
 ```
+
+### LightningCSS and Terser
+
+Install globally `-g` or locally `--save-dev`
+```bash
+npm install -g lightningcss-cli terser
+```
