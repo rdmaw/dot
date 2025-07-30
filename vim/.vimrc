@@ -1,21 +1,21 @@
-set noerrorbells
+let mapleader =" "
+
 set visualbell
 set t_vb=
 set termguicolors
-set title
-set nowrap
+set clipboard=unnamedplus
 set number
 set relativenumber
+set nowrap
 set autoindent
 set smartindent
 set breakindent
 set shiftwidth=2
 set tabstop=2
 set smarttab
-set clipboard=unnamedplus
 set expandtab
+set hidden
 set incsearch
-set hlsearch
 set ignorecase
 set smartcase
 set splitbelow
@@ -29,16 +29,20 @@ set backspace=start,eol,indent
 set path+=**
 set wildignore+=*/node_modules/*
 
-let mapleader = " "
-
-nnoremap <A-v> <C-v>
 inoremap jj <ESC>
-nnoremap + <C-a>
-nnoremap - <C-x>
-nnoremap <C-e> gg<S-v>G
+nnoremap <C-a> gg<S-v>G " Visually select all
 nnoremap <C-d> <C-d>zz " Center cursor on Ctrl-d
 nnoremap <C-u> <C-u>zz " Center cursor on Ctrl-u
-nnoremap <left> <cmd>echo 'Use h to move!'<CR> " Use h to move!
-nnoremap <right> <cmd>echo 'Use l to move!'<CR>
-nnoremap <up> <cmd>echo 'Use k to move!'<CR>
-nnoremap <down> <cmd>echo 'Use j to move!'<CR>
+
+packadd! matchit
+
+call plug#begin()
+
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'morhetz/gruvbox'
+
+call plug#end()
+
+set background=dark
+colorscheme gruvbox
