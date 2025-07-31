@@ -150,7 +150,7 @@ Set up ssh connection (optional):
 ```bash
 sudo pacman -S openssh
 ssh-keygen -t ed25519 -C "12345678+<user>@users.noreply.github.com"
-eval "$(ssh-agent -s)"
+eval "$(ssh-agent -s)" # For fish shell use: (ssh-agent -c)
 ssh-add ~/.ssh/id_ed25519
 cat ~/.ssh/id_ed25519.pub
 ```
