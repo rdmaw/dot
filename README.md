@@ -308,7 +308,7 @@ npm -v # should print '10.9.2'
 
 Arch: For arch simply do:
 ```bash
-sudo pacman -S nodejs npm
+sudo pacman -S npm
 ```
 
 ### Installing Oh My Posh with a custom theme
