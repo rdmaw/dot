@@ -9,21 +9,21 @@ end)
 
 config.default_domain = 'WSL:archlinux'
 
-config.max_fps = 240
-config.animation_fps = 240
+config.max_fps = 180
+config.animation_fps = 180
 
 config.enable_tab_bar = false
 
 config.window_padding = {
     left = 0,
     right = 0,
-    top = 3,
+    top = 0,
     bottom = 0,
 }
 -- Font
 config.font = wezterm.font_with_fallback { 'Berkeley Mono', 'Symbols Nerd Font' }
 
-config.font_size = 15
+config.font_size = 14.5
 config.line_height = 1
 config.freetype_load_flags = 'NO_HINTING'
 
@@ -31,19 +31,18 @@ config.freetype_load_flags = 'NO_HINTING'
 config.colors = {
     cursor_fg = "#232136",
     cursor_bg = "#dcdec9",
-    cursor_border = "#1e1e2e",
+    cursor_border = "#242933",
 
-    background = "#1d2021",
-    foreground = "#D7DAE0",
+    foreground = "#d8dee9",
+    background = "#242933",
+    selection_fg = "#d8dee9",
+    selection_bg = "#2e3440",
     
-    selection_bg = "#2D293B",
-    selection_fg = "#F0AFE1",
-    
-    scrollbar_thumb = "#B3E1A3",
-    split = "#B3E1A3",
+    scrollbar_thumb = "#b3e1a3",
+    split = "#b3e1a3",
 
-    ansi = {"#2E3440", "#BF616A", "#A3BE8C", "#EBCB8B", "#5E81AC", "#B48EAD" ,"#81A1C1" ,"#D8DEE9"},
-    brights = {"#3B4252", "#BF616A", "#A3BE8C", "#EBCB8B", "#5E81AC", "#B48EAD", "#88C0D0", "#ECEFF4"},
+    ansi = {"#191d24", "#bf616a", "#a3be8c", "#ebcb8b", "#81a1c1", "#b48ead" ,"#8fbcbb" ,"#d8dee9"},
+    brights = {"#3b4252", "#d06f79", "#b1d196", "#f0d399", "#88c0d0", "#c895bf", "#93ccdc", "#e5e9f0"},
     
     tab_bar = {
         background = "#1e1e2e",
