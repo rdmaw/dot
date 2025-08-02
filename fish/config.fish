@@ -10,4 +10,5 @@ zoxide init fish | source
 # end
 
 alias q=exit
+alias nv=nvim
 alias lg=lazygit
