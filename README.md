@@ -526,7 +526,12 @@ sudo chmod a+rx /usr/local/bin/unimatrix
 
 ### Svgo, LightningCSS, Terser and html-minifier-terser
 
+Install using pacman:
+```bash
+sudo pacman -S svgo
+```
+
 Install locally `--save-dev` or globally `-g`:
 ```bash
-npm install -g svgo lightningcss-cli terser html-minifier-terser
+npm install -g lightningcss terser
 ```
