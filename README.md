@@ -524,14 +524,14 @@ sudo curl -L https://raw.githubusercontent.com/will8211/unimatrix/master/unimatr
 sudo chmod a+rx /usr/local/bin/unimatrix
 ```
 
-### Svgo, LightningCSS, Terser and html-minifier-terser
+### Svgo, LightningCSS, Terser and cwebp
 
 Install using pacman:
 ```bash
-sudo pacman -S svgo
+sudo pacman -S svgo libwebp
 ```
 
 Install locally `--save-dev` or globally `-g`:
 ```bash
-npm install -g lightningcss terser
+sudo npm install -g lightningcss terser
 ```
