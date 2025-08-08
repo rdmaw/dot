@@ -10,8 +10,8 @@ set nowrap
 set autoindent
 set smartindent
 set breakindent
-set shiftwidth=2
-set tabstop=2
+set shiftwidth=4
+set tabstop=4
 set smarttab
 set expandtab
 set hidden
@@ -30,7 +30,7 @@ set path+=**
 set wildignore+=*/node_modules/*
 
 inoremap jj <ESC>
-nnoremap <C-a> gg<S-v>G " Visually select all
+nnoremap <C-e> gg<S-v>G " Visually select all
 nnoremap <C-d> <C-d>zz " Center cursor on Ctrl-d
 nnoremap <C-u> <C-u>zz " Center cursor on Ctrl-u
 
