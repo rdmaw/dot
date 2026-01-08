@@ -15,3 +15,4 @@ zoxide init fish | source
 alias q=exit
 alias nv=nvim
 alias lg=lazygit
+alias lcss=lightningcss
