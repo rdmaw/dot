@@ -21,7 +21,7 @@ set smartcase
 set splitbelow
 set splitright
 set splitkeep=cursor
-set mouse=v
+set mouse=a
 set scrolloff=8
 set sidescrolloff=30
 set noswapfile
@@ -33,6 +33,11 @@ inoremap jj <ESC>
 nnoremap <C-e> gg<S-v>G " Visually select all
 nnoremap <C-d> <C-d>zz " Center cursor on Ctrl-d
 nnoremap <C-u> <C-u>zz " Center cursor on Ctrl-u
+
+map <ScrollWheelUp> <Nop>
+map <ScrollWheelDown> <Nop>
+map <ScrollWheelLeft> <Nop>
+map <ScrollWheelRight> <Nop>
 
 packadd! matchit
 
@@ -46,3 +51,8 @@ call plug#end()
 
 set background=dark
 colorscheme gruvbox
+
+hi Normal ctermbg=NONE guibg=NONE
+hi NonText ctermbg=NONE guibg=NONE
+hi EndOfBuffer ctermbg=NONE guibg=NONE
+hi SignColumn ctermbg=NONE guibg=NONE
