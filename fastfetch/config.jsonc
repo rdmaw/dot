@@ -3,10 +3,10 @@
     "logo": {
         "source": "~/Pictures/hundene/ayla1.png",
     	"type": "kitty-direct",
-        "width": 33,
+        "width": 30,
     	// "height": 18,
     	"padding": {
-    		"top": 2,
+    		"top": 3,
         "left": 2
     	}
     },
